@@ -3,10 +3,13 @@
 class ApplicationPolicy
   attr_reader :user, :record
 
-  def initialize(user, record)
+  def initialize(user, record) # user is current user, record is the instance of the model/ individual restaurant
     @user = user
     @record = record
   end
+
+  # true => anyone can do this
+  # false => noone can do this
 
   def index?
     false
