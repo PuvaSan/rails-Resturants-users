@@ -27,4 +27,17 @@ class RestaurantPolicy < ApplicationPolicy
   def create?
     true
   end
+
+  def edit?
+    update?
+  end
+
+  def update?
+    # only owner of restaurant
+    # record - restaurant instance
+    # user - current user
+    record.user_id == user.id
+  end
+
+
 end
