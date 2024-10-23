@@ -3,13 +3,12 @@ class RestaurantsController < ApplicationController
 
   # GET /restaurants or /restaurants.json
   def index
-    @restaurants = Restaurant.all
-    authorize @restaurants
+    @restaurants = policy_scope(Restaurant)
   end
 
   # GET /restaurants/1 or /restaurants/1.json
   def show
-    authorize @restaurant
+    # authorize @restaurant
   end
 
   # GET /restaurants/new
@@ -20,7 +19,7 @@ class RestaurantsController < ApplicationController
 
   # GET /restaurants/1/edit
   def edit
-    authorize @restaurant
+    # authorize @restaurant
   end
 
   # POST /restaurants or /restaurants.json
@@ -43,7 +42,7 @@ class RestaurantsController < ApplicationController
 
   # PATCH/PUT /restaurants/1 or /restaurants/1.json
   def update
-    authorize @restaurant
+    # authorize @restaurant
     respond_to do |format|
       if @restaurant.update(restaurant_params)
         format.html { redirect_to @restaurant, notice: "Restaurant was successfully updated." }
@@ -57,7 +56,7 @@ class RestaurantsController < ApplicationController
 
   # DELETE /restaurants/1 or /restaurants/1.json
   def destroy
-    authorize @restaurant
+    # authorize @restaurant
     @restaurant.destroy!
 
     respond_to do |format|
@@ -70,6 +69,7 @@ class RestaurantsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_restaurant
       @restaurant = Restaurant.find(params[:id])
+      authorize @restaurant
     end
 
     # Only allow a list of trusted parameters through.

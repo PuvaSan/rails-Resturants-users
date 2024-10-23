@@ -3,7 +3,7 @@
 <div>
   <% if policy(@restaurant).edit? || policy(@restaurant).destroy? %>
     <%= link_to "Edit this restaurant", edit_restaurant_path(@restaurant) %> |
-    <%= link_to "Destroy this restaurant", @restaurant, method: :delete %>
+    <%= link_to "Destroy this restaurant", @restaurant, method: :delete %>  |
   <%  end %>
-  <%= button_to "Back to restaurants", restaurants_path %>
+  <%= link_to "Back to restaurants", restaurants_path %>
 </div>
