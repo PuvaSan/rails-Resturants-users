@@ -7,9 +7,10 @@ class RestaurantPolicy < ApplicationPolicy
 
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!
-    # def resolve
-    #   scope.all
-    # end
+    def resolve
+      scope.all # same as Restaurant.all
+      Restaurant.where(user: user) # shows only the restaurants created by the user
+    end
   end
 
   def index?
@@ -39,5 +40,9 @@ class RestaurantPolicy < ApplicationPolicy
     record.user_id == user.id
   end
 
+  def destroy?
+    # only owner of restaurant
+    record.user_id == user.id
+  end
 
 end
