@@ -57,6 +57,7 @@ class RestaurantsController < ApplicationController
 
   # DELETE /restaurants/1 or /restaurants/1.json
   def destroy
+    authorize @restaurant
     @restaurant.destroy!
 
     respond_to do |format|

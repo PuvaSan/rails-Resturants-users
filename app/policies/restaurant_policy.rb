@@ -39,5 +39,9 @@ class RestaurantPolicy < ApplicationPolicy
     record.user_id == user.id
   end
 
+  def destroy?
+    # only owner of restaurant
+    record.user_id == user.id
+  end
 
 end
