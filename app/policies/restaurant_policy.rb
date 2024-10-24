@@ -8,8 +8,7 @@ class RestaurantPolicy < ApplicationPolicy
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      scope.all # same as Restaurant.all
-      Restaurant.where(user: user) # shows only the restaurants created by the user
+      user.admin? ? scope.all : scope.where(user: user) # shows only the restaurants created by the user
     end
   end
 
